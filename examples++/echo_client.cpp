@@ -30,7 +30,7 @@ int main(void)
 
 		std::cout.flush();
 	}
-	
+
 	sock.destroy();
 
 	return 0;

@@ -195,11 +195,23 @@ binds the socket to `bindhost:bindport` using `proto_osi3` (`IPv4` or `IPv6` or 
 ### `accept()`
 Declared in `inetserverstream.hpp`, defined in `inetserverstream.cpp`
 
-	inet_stream* accept(int numeric=0);
+	inet_stream& accept(int numeric=0);
 
 Accept an incoming connection. `numeric` may be `NUMERIC` if you want to have the host and port as numbers.
 
-Returns a pointer to a dynamically allocated `inet_stream` object
+Returns a reference to a dynamically allocated `inet_stream` object. It is recommended to use it like in this example:
+
+	libsocket::inet_stream& clsock = srv.accept();
+
+Later, you may free the space with
+
+	delete &clsock;
+
+What's possible but not recommended is to assign the return value to a normal (auto) variable:
+
+	libsocket::inet_stream clsock = srv.accept();
+
+This works, but you may not free the allocated space anymore because you do not have the address of the object.
 
 ### Destroy
 Declared in `socket.hpp`, defined in `socket.cpp`

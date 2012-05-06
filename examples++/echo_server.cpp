@@ -23,7 +23,7 @@ int main(void)
 		for (;;)
 		{
 			srv.rcvfrom(buf,9,from,127,fromport,15);
-			
+
 			std::cout << buf << std::endl;
 
 			srv.sndto(buf,9,from,fromport);

@@ -229,12 +229,27 @@ binds the socket to <code>bindhost:bindport</code> using <code>proto_osi3</code>
 
 <p>Declared in <code>inetserverstream.hpp</code>, defined in <code>inetserverstream.cpp</code></p>
 
-<pre><code>inet_stream* accept(int numeric=0);
+<pre><code>inet_stream&amp; accept(int numeric=0);
 </code></pre>
 
 <p>Accept an incoming connection. <code>numeric</code> may be <code>NUMERIC</code> if you want to have the host and port as numbers.</p>
 
-<p>Returns a pointer to a dynamically allocated <code>inet_stream</code> object</p>
+<p>Returns a reference to a dynamically allocated <code>inet_stream</code> object. It is recommended to use it like in this example:</p>
+
+<pre><code>libsocket::inet_stream&amp; clsock = srv.accept();
+</code></pre>
+
+<p>Later, you may free the space with</p>
+
+<pre><code>delete &amp;clsock;
+</code></pre>
+
+<p>What's possible but not recommended is to assign the return value to a normal (auto) variable:</p>
+
+<pre><code>libsocket::inet_stream clsock = srv.accept();
+</code></pre>
+
+<p>This works, but you may not free the allocated space anymore because you do not have the address of the object.</p>
 
 <h3>Destroy</h3>
 

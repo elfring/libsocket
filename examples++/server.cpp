@@ -18,19 +18,17 @@ int main(void)
 
 	try {
 		inet_stream_server srv(host.c_str(),port.c_str(),IPv6);
-		inet_stream* cl1;
+		inet_stream& cl1 = srv.accept();
 
-		cl1 = srv.accept();
-
-		*cl1 << "Hello\n";
+		cl1 << "Hello\n";
 
 		answ.resize(100);
 
-		*cl1 >> answ;
+		cl1 >> answ;
 
 		std::cout << answ;
 
-		cl1->destroy();
+		cl1.destroy();
 
 		srv.destroy();
 
