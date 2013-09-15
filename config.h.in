@@ -1,0 +1,3 @@
+#define libsocket_VERSION_MAJOR @libsocket_VERSION_MAJOR@
+#define libsocket_VERSION_MINOR @libsocket_VERSION_MINOR@ 
+#define libsocket_VERSION_PATCH @libsocket_VERSION_PATCH@ 
